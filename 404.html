@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page introuvable | SK'Shops</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0d0d0d; --dark: #111111; --dark2: #1a1a1a;
+            --gold: #c9a84c; --gold-light: #e5c97e; --gold-soft: rgba(201,168,76,0.12);
+            --white: #ffffff; --off-white: #f5f2ed;
+            --font-title: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-body);
+            background: var(--dark);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 24px; position: relative; overflow: hidden;
+        }
+
+        /* Background blobs */
+        .bg-blob { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+        .bb1 { width: 600px; height: 600px; background: rgba(201,168,76,0.08); top: -200px; right: -200px; }
+        .bb2 { width: 400px; height: 400px; background: rgba(201,168,76,0.05); bottom: -150px; left: -150px; }
+
+        /* Particles */
+        .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .particle {
+            position: absolute; width: 2px; height: 2px;
+            background: var(--gold); border-radius: 50%;
+            animation: particle-float linear infinite;
+            opacity: 0;
+        }
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-20px) scale(1); opacity: 0; }
+        }
+
+        .container { position: relative; z-index: 2; max-width: 580px; animation: fadeUp 0.7s ease both; }
+
+        /* Big 404 */
+        .code-wrap { position: relative; margin-bottom: 24px; }
+        .code {
+            font-family: var(--font-title); font-size: clamp(100px, 18vw, 160px);
+            font-weight: 900; line-height: 1; letter-spacing: -4px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            background-size: 200%;
+        }
+        @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+
+        .code-glow {
+            position: absolute; inset: 0;
+            font-family: var(--font-title); font-size: clamp(100px, 18vw, 160px);
+            font-weight: 900; line-height: 1; letter-spacing: -4px;
+            color: var(--gold); filter: blur(40px); opacity: 0.15; z-index: -1;
+        }
+
+        /* Logo */
+        .logo { font-family: var(--font-title); font-size: 22px; font-weight: 900; color: var(--gold); margin-bottom: 32px; display: block; }
+
+        h1 { font-family: var(--font-title); font-size: clamp(22px, 4vw, 32px); color: var(--white); margin-bottom: 12px; }
+
+        p {
+            font-size: 15px; color: rgba(255,255,255,0.4);
+            line-height: 1.8; margin-bottom: 40px;
+        }
+
+        /* Timer */
+        .redirect-msg {
+            font-size: 13px; color: rgba(255,255,255,0.3);
+            margin-bottom: 32px;
+        }
+        .countdown { color: var(--gold); font-weight: 700; font-size: 16px; }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 200px; height: 3px; background: rgba(255,255,255,0.08);
+            border-radius: 3px; margin: 0 auto 32px; overflow: hidden;
+        }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 3px; width: 0%; transition: width 1s linear; }
+
+        .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 28px; border-radius: 9px;
+            font-size: 14px; font-weight: 600; font-family: var(--font-body);
+            text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none;
+        }
+        .btn-primary { background: var(--gold); color: var(--black); }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+        .btn-secondary { background: transparent; color: rgba(255,255,255,0.6); border: 1.5px solid rgba(255,255,255,0.15); }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-soft); transform: translateY(-2px); }
+        .btn-wa { background: #25D366; color: white; }
+        .btn-wa:hover { background: #1fb855; transform: translateY(-2px); }
+
+        /* Suggestions */
+        .suggestions { margin: 40px 0 0; }
+        .suggestions h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 14px; }
+        .sugg-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .sugg-link {
+            padding: 7px 16px; border-radius: 50px;
+            border: 1px solid rgba(201,168,76,0.2); color: rgba(255,255,255,0.4);
+            font-size: 13px; text-decoration: none; transition: all 0.25s;
+        }
+        .sugg-link:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-soft); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blob bb1"></div>
+    <div class="bg-blob bb2"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <a class="logo" href="index.html">SK'Shops</a>
+
+        <div class="code-wrap">
+            <div class="code-glow">404</div>
+            <div class="code">404</div>
+        </div>
+
+        <h1>Page introuvable</h1>
+        <p>Oops ! Cette page n'existe pas ou a été déplacée.<br>Pas de panique — notre boutique est toujours là pour vous ✨</p>
+
+        <div class="redirect-msg">
+            Redirection automatique dans <span class="countdown" id="countdown">10</span> secondes
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+        <div class="btns">
+            <a href="index.html" class="btn btn-primary">🏠 Retour à l'accueil</a>
+            <a href="index.html#vetements" class="btn btn-secondary">👗 Voir les vêtements</a>
+            <a href="https://wa.me/1041288711" class="btn btn-wa" target="_blank">📲 Nous contacter</a>
+        </div>
+
+        <div class="suggestions">
+            <h3>Liens rapides</h3>
+            <div class="sugg-links">
+                <a href="index.html#nouveautes" class="sugg-link">✨ Nouveautés</a>
+                <a href="index.html#chaussures" class="sugg-link">👟 Chaussures</a>
+                <a href="index.html#galerie" class="sugg-link">🖼️ Galerie</a>
+                <a href="auth.html" class="sugg-link">👤 Mon compte</a>
+                <a href="index.html#contact" class="sugg-link">📞 Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Particles
+        const particlesEl = document.getElementById("particles");
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.width = p.style.height = (2 + Math.random() * 3) + "px";
+            p.style.animationDuration = (6 + Math.random() * 10) + "s";
+            p.style.animationDelay = (Math.random() * 8) + "s";
+            particlesEl.appendChild(p);
+        }
+
+        // Countdown + redirect
+        let count = 10;
+        const countEl = document.getElementById("countdown");
+        const fill = document.getElementById("progressFill");
+
+        // Start progress bar
+        setTimeout(() => { fill.style.width = "100%"; }, 100);
+
+        const interval = setInterval(() => {
+            count--;
+            countEl.textContent = count;
+            if (count <= 0) {
+                clearInterval(interval);
+                window.location.href = "index.html";
+            }
+        }, 1000);
+
+        // Cancel redirect if user clicks anything
+        document.querySelectorAll("a, button").forEach(el => {
+            el.addEventListener("click", () => clearInterval(interval));
+        });
+    </script>
+</body>
+</html>
