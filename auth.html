@@ -6,153 +6,222 @@
     <title>Connexion | SK'Shops</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-:root{--black:#060810;--dark:#0a0d1a;--dark2:#0f1327;--dark3:#151932;--blue:#1a2a6c;--blue-light:#3a56c8;--rose:#e8336d;--rose-light:#ff5c93;--rose-soft:rgba(232,51,109,.12);--grad-rose:linear-gradient(135deg,#e8336d,#ff5c93);--grad-bg:linear-gradient(140deg,#060d2a 0%,#0a0d1a 50%,#1a060e 100%);--grad-card:linear-gradient(160deg,#0f1327 0%,#151932 100%);--white:#fff;--off-white:#f2f4ff;--text:#1a1f3c;--text-mid:#4a5080;--text-light:#8890b8;--red:#e04455;--green:#2ecc8a;--shadow-rose:0 8px 32px rgba(232,51,109,.3);--tr:.3s cubic-bezier(.4,0,.2,1);--font-title:'Playfair Display',Georgia,serif;--font-body:'DM Sans',sans-serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;font-family:var(--font-body);overflow:hidden}a{text-decoration:none;color:inherit}
-.auth-wrapper{display:flex;height:100vh;position:relative}
-/* LEFT */
-.auth-left{flex:1.1;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:56px 52px;background:var(--grad-bg)}
-.auth-left::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(58,86,200,.2) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
-.left-blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:blobDrift 10s ease-in-out infinite}
-@keyframes blobDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-15px) scale(1.05)}66%{transform:translate(-10px,10px) scale(.96)}}
-.lb1{width:420px;height:420px;background:rgba(58,86,200,.25);top:-80px;right:-100px}
-.lb2{width:320px;height:320px;background:rgba(232,51,109,.18);bottom:-60px;left:-60px;animation-delay:5s}
-.lb3{width:180px;height:180px;background:rgba(58,86,200,.1);top:38%;left:20%;animation-delay:2s}
-.left-orbit{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;width:340px;height:340px}
-.orbit-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(232,51,109,.18);animation:spin linear infinite}
-.orbit-ring:nth-child(1){animation-duration:18s}
-.orbit-ring:nth-child(2){inset:30px;border-color:rgba(58,86,200,.2);animation-duration:28s;animation-direction:reverse}
-.orbit-ring:nth-child(3){inset:60px;border-color:rgba(232,51,109,.12);animation-duration:22s}
-@keyframes spin{to{transform:rotate(360deg)}}
-.orbit-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:var(--grad-card);border:1px solid rgba(232,51,109,.25);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(232,51,109,.2),0 0 80px rgba(58,86,200,.15);font-size:48px;animation:orbitPulse 3s ease-in-out infinite}
-@keyframes orbitPulse{0%,100%{box-shadow:0 0 40px rgba(232,51,109,.2),0 0 80px rgba(58,86,200,.15)}50%{box-shadow:0 0 60px rgba(232,51,109,.4),0 0 100px rgba(58,86,200,.25)}}
-.particles-layer{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-.p-dot{position:absolute;border-radius:50%;animation:pFloat linear infinite;opacity:0}
-@keyframes pFloat{0%{transform:translateY(100%) scale(0);opacity:0}10%{opacity:.7}90%{opacity:.3}100%{transform:translateY(-60px) scale(1);opacity:0}}
-.floating-cards{position:absolute;z-index:2;pointer-events:none;top:18%;right:8%;display:flex;flex-direction:column;gap:10px}
-.fcard{display:flex;align-items:center;gap:10px;background:rgba(15,19,39,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,51,109,.2);border-radius:12px;padding:10px 14px;color:white;font-size:13px;font-weight:500;box-shadow:0 8px 24px rgba(6,8,16,.4);animation:fcardIn .6s ease both;transform-origin:right center}
+:root{
+    --rose:#e8336d;--rose-light:#ff5c93;--rose-soft:rgba(232,51,109,.13);
+    --grad-rose:linear-gradient(135deg,#e8336d,#ff5c93);
+    --text-dark:#1a0f08;--text-mid:#5a3a28;--text-light:#9a7a6a;
+    --red:#e04455;--green:#2ecc8a;
+    --shadow-rose:0 8px 32px rgba(232,51,109,.3);
+    --tr:.3s cubic-bezier(.4,0,.2,1);
+    --font-title:'Playfair Display',Georgia,serif;
+    --font-body:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:var(--font-body)}
+a{text-decoration:none;color:inherit}
+
+/* Même image de fond que le site */
+body{
+    background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1800&q=85');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-color:#2a1208;
+}
+body::before{
+    content:'';position:fixed;inset:0;
+    background:rgba(10,4,1,0.40);
+    pointer-events:none;z-index:0;
+}
+
+.auth-wrapper{display:flex;min-height:100vh;position:relative;z-index:1}
+
+/* ── PANNEAU GAUCHE — SK'Shops écrit sur l'image visible ── */
+.auth-left{
+    flex:1.2;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:56px 52px;
+}
+
+/* Nom SK'Shops en GRAND centré visible sur l'image */
+.auth-brand-center{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-60%);
+    text-align:center;
+    pointer-events:none;
+    z-index:2;
+    width:100%;
+    padding:0 20px;
+}
+.auth-brand-name{
+    font-family:var(--font-title);
+    font-size:clamp(64px,9vw,130px);
+    font-weight:900;
+    letter-spacing:-.02em;
+    background:var(--grad-rose);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    filter:drop-shadow(0 0 50px rgba(232,51,109,.65)) drop-shadow(0 4px 20px rgba(0,0,0,.5));
+    display:block;
+    line-height:.95;
+}
+.auth-brand-tagline{
+    display:block;
+    font-size:clamp(13px,1.8vw,20px);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:rgba(255,235,215,.6);
+    margin-top:14px;
+    font-family:var(--font-body);
+    font-weight:500;
+    text-shadow:0 2px 12px rgba(0,0,0,.5);
+}
+
+/* Cartes flottantes info */
+.floating-cards{position:relative;z-index:3;display:flex;flex-direction:column;gap:10px;align-self:flex-end;margin-top:auto;margin-bottom:180px}
+.fcard{display:flex;align-items:center;gap:10px;background:rgba(10,4,1,.68);backdrop-filter:blur(16px);border:1px solid rgba(232,51,109,.22);border-radius:12px;padding:10px 16px;color:white;font-size:13px;font-weight:500;box-shadow:0 8px 24px rgba(5,2,0,.4);animation:fcardIn .6s ease both}
 .fcard:nth-child(1){animation-delay:.2s}.fcard:nth-child(2){animation-delay:.5s}.fcard:nth-child(3){animation-delay:.8s}
-@keyframes fcardIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fcardIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 .fcard-icon{font-size:20px}
 .fcard-text strong{display:block;font-size:12px;color:var(--rose-light)}
-.fcard-text span{font-size:11px;color:rgba(255,255,255,.4)}
+.fcard-text span{font-size:11px;color:rgba(255,220,200,.45)}
+
+/* Bottom features */
 .left-bottom{position:relative;z-index:3}
-.left-logo{font-family:var(--font-title);font-size:46px;font-weight:900;letter-spacing:.04em;margin-bottom:10px;display:inline-block;background:var(--grad-rose);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(232,51,109,.5))}
-.left-tagline{font-size:15px;color:rgba(255,255,255,.35);font-style:italic;font-family:var(--font-title);margin-bottom:36px}
-.left-features{display:flex;flex-direction:column;gap:16px}
-.lf-item{display:flex;align-items:center;gap:14px}
-.lf-icon{width:42px;height:42px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(232,51,109,.1);border:1px solid rgba(232,51,109,.22);transition:all var(--tr)}
-.lf-item:hover .lf-icon{background:rgba(232,51,109,.2);box-shadow:0 0 14px rgba(232,51,109,.3)}
-.lf-text strong{display:block;font-size:14px;color:white;font-weight:600;margin-bottom:1px}
-.lf-text span{font-size:12px;color:rgba(255,255,255,.3)}
-/* RIGHT */
-.auth-right{width:480px;flex-shrink:0;background:var(--off-white);display:flex;align-items:flex-start;justify-content:center;padding:0;overflow-y:auto;position:relative}
-.auth-right::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad-rose);box-shadow:0 0 20px rgba(232,51,109,.5);z-index:10}
-.auth-card-scroll{width:100%;padding:52px 44px;min-height:100%;display:flex;flex-direction:column}
-.auth-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-light);margin-bottom:36px;transition:color var(--tr);cursor:pointer}
+.left-logo{font-family:var(--font-title);font-size:36px;font-weight:900;display:inline-block;background:var(--grad-rose);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(232,51,109,.5));margin-bottom:6px}
+.left-tagline{font-size:13px;color:rgba(255,230,210,.38);font-style:italic;font-family:var(--font-title);margin-bottom:28px}
+.left-features{display:flex;flex-direction:column;gap:12px}
+.lf-item{display:flex;align-items:center;gap:12px}
+.lf-icon{width:38px;height:38px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px;background:rgba(232,51,109,.1);border:1px solid rgba(232,51,109,.22)}
+.lf-text strong{display:block;font-size:13px;color:rgba(255,245,235,.9);font-weight:600;margin-bottom:1px}
+.lf-text span{font-size:11px;color:rgba(255,220,200,.32)}
+
+/* ── PANNEAU DROIT — formulaire ── */
+.auth-right{
+    width:450px;flex-shrink:0;
+    background:rgba(255,248,240,0.95);
+    backdrop-filter:blur(8px);
+    display:flex;align-items:flex-start;
+    overflow-y:auto;position:relative;
+}
+.auth-right::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad-rose);z-index:10}
+.auth-card-scroll{width:100%;padding:48px 40px;min-height:100%;display:flex;flex-direction:column}
+.auth-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-light);margin-bottom:32px;transition:color var(--tr);cursor:pointer}
 .auth-back:hover{color:var(--rose)}
 .auth-back svg{transition:transform var(--tr)}
 .auth-back:hover svg{transform:translateX(-3px)}
+
 /* Tabs */
-.auth-tabs{display:flex;gap:0;margin-bottom:36px;background:white;border-radius:12px;padding:4px;border:1.5px solid rgba(26,42,108,.1);box-shadow:0 2px 8px rgba(26,42,108,.06)}
+.auth-tabs{display:flex;gap:0;margin-bottom:32px;background:rgba(90,58,40,.08);border-radius:12px;padding:4px}
 .auth-tab{flex:1;padding:11px;text-align:center;font-size:14px;font-weight:600;cursor:pointer;background:none;border:none;border-radius:9px;transition:all var(--tr);color:var(--text-light);font-family:var(--font-body)}
 .auth-tab.active{background:var(--grad-rose);color:white;box-shadow:var(--shadow-rose)}
 .form-section{display:none}.form-section.active{display:block}
 .form-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:8px}
-.form-title{font-family:var(--font-title);font-size:32px;font-weight:700;color:var(--text);margin-bottom:5px;line-height:1.1}
+.form-title{font-family:var(--font-title);font-size:30px;font-weight:700;color:var(--text-dark);margin-bottom:5px;line-height:1.1}
 .form-title span{background:var(--grad-rose);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.form-sub{font-size:14px;color:var(--text-light);margin-bottom:28px}
-/* Fields */
-.field{margin-bottom:17px;position:relative}
-.field-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:7px}
+.form-sub{font-size:14px;color:var(--text-light);margin-bottom:24px}
+.field{margin-bottom:16px}
+.field-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px}
 .field-input-wrap{position:relative}
-.field-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:17px;pointer-events:none;z-index:1;color:var(--text-light);transition:color var(--tr)}
-.has-icon input{padding-left:44px!important}
-input[type=text],input[type=email],input[type=tel],input[type=password]{width:100%;padding:13px 16px;border:1.5px solid rgba(26,42,108,.12);border-radius:10px;font-size:14px;color:var(--text);outline:none;background:white;font-family:var(--font-body);transition:all var(--tr);box-shadow:0 1px 3px rgba(26,42,108,.05)}
-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(232,51,109,.12),0 2px 8px rgba(232,51,109,.08);background:white}
-input::placeholder{color:rgba(138,144,184,.55)}
-input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fill-color:var(--text)!important}
+.field-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;z-index:1}
+.has-icon input{padding-left:40px!important}
+input[type=text],input[type=email],input[type=tel],input[type=password]{width:100%;padding:12px 14px;border:1.5px solid rgba(90,58,40,.14);border-radius:10px;font-size:14px;color:var(--text-dark);outline:none;background:white;font-family:var(--font-body);transition:all var(--tr)}
+input:focus{border-color:var(--rose);box-shadow:0 0 0 3px var(--rose-soft)}
+input::placeholder{color:rgba(90,58,40,.35)}
 .field-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pw-wrap{position:relative}
-.pw-wrap input{padding-right:44px!important}
-.pw-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;opacity:.45;transition:opacity var(--tr);line-height:1;color:var(--text-mid)}
+.pw-wrap input{padding-right:40px!important}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:14px;opacity:.45;transition:opacity var(--tr)}
 .pw-eye:hover{opacity:.9;color:var(--rose)}
 .pw-strength-bar{display:flex;gap:4px;margin-top:6px}
-.strength-seg{flex:1;height:3px;border-radius:3px;background:rgba(26,42,108,.1);transition:background .4s}
-.strength-seg.weak{background:#e04455}.strength-seg.fair{background:#f09000}.strength-seg.good{background:#2ecc8a}.strength-seg.strong{background:linear-gradient(90deg,#e8336d,#3a56c8)}
+.strength-seg{flex:1;height:3px;border-radius:3px;background:rgba(90,58,40,.1);transition:background .4s}
+.strength-seg.weak{background:#e04455}.strength-seg.fair{background:#f09000}.strength-seg.good{background:#2ecc8a}.strength-seg.strong{background:var(--grad-rose)}
 .pw-strength-label{font-size:11px;color:var(--text-light);margin-top:4px}
 .msg-error{color:var(--red);font-size:13px;min-height:18px;margin-bottom:6px}
-.check-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:18px}
+.check-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px}
 .check-row input[type=checkbox]{width:16px;height:16px;margin-top:2px;accent-color:var(--rose);flex-shrink:0;cursor:pointer}
 .check-row label{font-size:13px;color:var(--text-light);cursor:pointer}
 .check-row a{color:var(--rose);font-weight:600}
-.forgot-link{display:block;text-align:right;font-size:12px;color:var(--text-light);margin-top:-10px;margin-bottom:18px;cursor:pointer;transition:color var(--tr)}
+.forgot-link{display:block;text-align:right;font-size:12px;color:var(--text-light);margin-top:-8px;margin-bottom:16px;cursor:pointer;transition:color var(--tr)}
 .forgot-link:hover{color:var(--rose)}
-.btn-submit{width:100%;padding:14px;border-radius:10px;border:none;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-body);letter-spacing:.03em;background:var(--grad-rose);color:white;box-shadow:var(--shadow-rose);transition:all var(--tr);position:relative;overflow:hidden;margin-top:4px}
-.btn-submit::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 0%,rgba(255,255,255,.15) 50%,transparent 100%);transform:translateX(-100%);transition:transform .6s ease}
-.btn-submit:hover::after{transform:translateX(100%)}
-.btn-submit:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(232,51,109,.48);filter:brightness(1.06)}
-.btn-submit:active{transform:translateY(0)}
+.btn-submit{width:100%;padding:14px;border-radius:10px;border:none;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-body);background:var(--grad-rose);color:white;box-shadow:var(--shadow-rose);transition:all var(--tr);position:relative;overflow:hidden;margin-top:4px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(232,51,109,.48)}
 .btn-submit-loader{display:none;justify-content:center;align-items:center;gap:8px}
 .loader-dot{width:6px;height:6px;border-radius:50%;background:white;animation:ldot .8s ease-in-out infinite}
 .loader-dot:nth-child(2){animation-delay:.15s}.loader-dot:nth-child(3){animation-delay:.3s}
 @keyframes ldot{0%,100%{transform:scale(.6);opacity:.4}50%{transform:scale(1);opacity:1}}
-.divider{display:flex;align-items:center;gap:14px;margin:22px 0}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(26,42,108,.1)}
+.divider{display:flex;align-items:center;gap:14px;margin:20px 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(90,58,40,.12)}
 .divider span{font-size:12px;color:var(--text-light);white-space:nowrap;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
-.btn-wa{width:100%;padding:13px;border-radius:10px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-body);background:#25D366;color:white;display:flex;align-items:center;justify-content:center;gap:9px;transition:all var(--tr);box-shadow:0 4px 16px rgba(37,211,102,.3)}
-.btn-wa:hover{background:#1fb855;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.42)}
+.btn-wa{width:100%;padding:13px;border-radius:10px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-body);background:#25D366;color:white;display:flex;align-items:center;justify-content:center;gap:9px;transition:all var(--tr)}
+.btn-wa:hover{background:#1fb855;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.35)}
+
 /* Dashboard */
 .dashboard-section{display:none}.dashboard-section.active{display:block}
-.dash-welcome{background:var(--grad-bg);border-radius:16px;padding:28px 24px;margin-bottom:24px;border:1px solid rgba(232,51,109,.18);position:relative;overflow:hidden}
-.dash-welcome::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(232,51,109,.15);filter:blur(40px)}
-.dash-welcome-emoji{font-size:36px;margin-bottom:10px}
-.dash-welcome-name{font-family:var(--font-title);font-size:26px;font-weight:700;background:var(--grad-rose);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.dash-welcome-sub{font-size:13px;color:rgba(255,255,255,.35);margin-top:3px}
-.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.dash-tile{background:white;border-radius:12px;padding:18px;display:flex;align-items:center;gap:12px;cursor:pointer;border:1.5px solid transparent;box-shadow:0 2px 8px rgba(26,42,108,.06);transition:all var(--tr)}
-.dash-tile:hover{border-color:rgba(232,51,109,.25);box-shadow:0 8px 24px rgba(26,42,108,.1);transform:translateY(-2px)}
-.dash-tile-icon{font-size:28px}
-.dash-tile-text strong{display:block;font-size:14px;color:var(--text);font-weight:600}
+.dash-welcome{background:linear-gradient(135deg,rgba(10,4,1,.92),rgba(20,8,3,.88));border-radius:16px;padding:28px 24px;margin-bottom:22px;border:1px solid rgba(232,51,109,.2);backdrop-filter:blur(8px)}
+.dash-welcome-emoji{font-size:34px;margin-bottom:10px}
+.dash-welcome-name{font-family:var(--font-title);font-size:24px;font-weight:700;background:var(--grad-rose);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dash-welcome-sub{font-size:13px;color:rgba(255,220,200,.38);margin-top:3px}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.dash-tile{background:white;border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;border:1.5px solid rgba(90,58,40,.1);transition:all var(--tr)}
+.dash-tile:hover{border-color:rgba(232,51,109,.28);box-shadow:0 8px 24px rgba(10,4,1,.12);transform:translateY(-2px)}
+.dash-tile-icon{font-size:26px}
+.dash-tile-text strong{display:block;font-size:14px;color:var(--text-dark);font-weight:600}
 .dash-tile-text small{font-size:12px;color:var(--text-light)}
-.orders-panel{background:white;border-radius:12px;padding:20px;margin-bottom:16px;border:1.5px solid rgba(26,42,108,.08)}
-.orders-panel h4{font-family:var(--font-title);font-size:18px;color:var(--text);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(26,42,108,.06)}
-.order-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(26,42,108,.05);font-size:13px}
-.order-row:last-child{border-bottom:none;padding-bottom:0}
-.order-num{font-weight:700;color:var(--text);font-size:12px}
+.orders-panel{background:white;border-radius:12px;padding:20px;margin-bottom:16px;border:1.5px solid rgba(90,58,40,.08)}
+.orders-panel h4{font-family:var(--font-title);font-size:17px;color:var(--text-dark);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(90,58,40,.07)}
+.order-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(90,58,40,.06);font-size:13px}
+.order-row:last-child{border-bottom:none}
+.order-num{font-weight:700;color:var(--text-dark);font-size:12px}
 .order-date{color:var(--text-light);font-size:12px}
 .order-price{font-weight:800;background:var(--grad-rose);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .order-badge{padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700}
 .badge-pending{background:rgba(232,51,109,.12);color:var(--rose)}
 .badge-done{background:rgba(46,204,138,.12);color:var(--green)}
-.empty-orders{text-align:center;padding:24px;color:var(--text-light);font-size:14px}
+.empty-orders{text-align:center;padding:22px;color:var(--text-light);font-size:14px}
 .empty-orders a{color:var(--rose);font-weight:600}
-.btn-logout{width:100%;padding:12px;border-radius:10px;background:none;border:1.5px solid rgba(26,42,108,.12);font-size:13px;font-weight:600;cursor:pointer;color:var(--red);transition:all var(--tr);font-family:var(--font-body)}
-.btn-logout:hover{background:rgba(224,68,69,.08);border-color:rgba(224,68,69,.3)}
-.auth-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--dark);color:white;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transition:all .35s ease;white-space:nowrap;pointer-events:none;box-shadow:0 10px 40px rgba(6,8,16,.35);border:1px solid rgba(232,51,109,.22)}
+.btn-logout-user{width:100%;padding:12px;border-radius:10px;background:none;border:1.5px solid rgba(90,58,40,.12);font-size:13px;font-weight:600;cursor:pointer;color:var(--red);transition:all var(--tr);font-family:var(--font-body)}
+.btn-logout-user:hover{background:rgba(224,68,69,.08);border-color:rgba(224,68,69,.3)}
+
+.auth-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:rgba(8,3,1,.96);color:white;padding:12px 22px;border-radius:50px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transition:all .35s ease;white-space:nowrap;pointer-events:none;box-shadow:0 10px 40px rgba(8,3,1,.4);border:1px solid rgba(232,51,109,.22)}
 .auth-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:900px){.auth-left{display:none}.auth-right{width:100%;height:100vh}.auth-card-scroll{padding:36px 28px}}
-@media(max-width:480px){.auth-card-scroll{padding:28px 20px}.field-row2{grid-template-columns:1fr}.form-title{font-size:26px}.dash-grid{grid-template-columns:1fr}}
+
+@media(max-width:900px){
+    .auth-left{display:none}
+    .auth-right{width:100%;min-height:100vh}
+    .auth-card-scroll{padding:32px 24px}
+}
+@media(max-width:480px){
+    .auth-card-scroll{padding:24px 18px}
+    .field-row2{grid-template-columns:1fr}
+    .form-title{font-size:26px}
+    .dash-grid{grid-template-columns:1fr}
+}
     </style>
 </head>
 <body>
 <div class="auth-wrapper">
-  <!-- LEFT -->
+  <!-- GAUCHE — image visible avec SK'Shops écrit dessus -->
   <div class="auth-left">
-    <div class="left-blob lb1"></div>
-    <div class="left-blob lb2"></div>
-    <div class="left-blob lb3"></div>
-    <div class="particles-layer" id="particles"></div>
-    <div class="left-orbit">
-      <div class="orbit-ring"></div>
-      <div class="orbit-ring"></div>
-      <div class="orbit-ring"></div>
-      <div class="orbit-center">🛍️</div>
+    <!-- Nom SK'Shops en grand sur l'image -->
+    <div class="auth-brand-center">
+        <span class="auth-brand-name">SK'Shops</span>
+        <span class="auth-brand-tagline">Mode & Style · Cotonou</span>
     </div>
+
+    <!-- Cartes d'info flottantes -->
     <div class="floating-cards">
       <div class="fcard"><span class="fcard-icon">🚚</span><div class="fcard-text"><strong>Livraison rapide</strong><span>48h à Cotonou</span></div></div>
       <div class="fcard"><span class="fcard-icon">💳</span><div class="fcard-text"><strong>Paiement sécurisé</strong><span>Mobile Money & livraison</span></div></div>
       <div class="fcard"><span class="fcard-icon">⭐</span><div class="fcard-text"><strong>98% satisfaits</strong><span>+1 200 clients</span></div></div>
     </div>
+
+    <!-- Features en bas -->
     <div class="left-bottom">
       <div class="left-logo">SK'Shops</div>
       <div class="left-tagline">Mode & Style — Vêtements · Chaussures</div>
@@ -164,19 +233,21 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fi
       </div>
     </div>
   </div>
-  <!-- RIGHT -->
+
+  <!-- DROITE — formulaire -->
   <div class="auth-right">
     <div class="auth-card-scroll">
       <a class="auth-back" href="index.html">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
         Retour à la boutique
       </a>
-      <!-- AUTH PANEL -->
+
       <div id="authPanel">
         <div class="auth-tabs">
           <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Connexion</button>
           <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">Créer un compte</button>
         </div>
+
         <!-- LOGIN -->
         <div class="form-section active" id="sectionLogin">
           <div class="form-eyebrow">✦ Bon retour</div>
@@ -184,20 +255,10 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fi
           <div class="form-sub">Accédez à votre espace et commandez facilement.</div>
           <div class="msg-error" id="loginError"></div>
           <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
-            <div class="field">
-              <label class="field-label">Email ou téléphone</label>
-              <div class="field-input-wrap has-icon">
-                <span class="field-icon">✉️</span>
-                <input type="text" id="loginId" placeholder="email@exemple.com" autocomplete="username" required>
-              </div>
-            </div>
-            <div class="field">
-              <label class="field-label">Mot de passe</label>
-              <div class="field-input-wrap pw-wrap">
-                <input type="password" id="loginPw" placeholder="••••••••" autocomplete="current-password" required>
-                <button type="button" class="pw-eye" onclick="togglePw('loginPw',this)">👁</button>
-              </div>
-            </div>
+            <div class="field"><label class="field-label">Email ou téléphone</label>
+              <div class="field-input-wrap has-icon"><span class="field-icon">✉️</span><input type="text" id="loginId" placeholder="email@exemple.com" autocomplete="username" required></div></div>
+            <div class="field"><label class="field-label">Mot de passe</label>
+              <div class="field-input-wrap pw-wrap"><input type="password" id="loginPw" placeholder="••••••••" autocomplete="current-password" required><button type="button" class="pw-eye" onclick="togglePw('loginPw',this)">👁</button></div></div>
             <span class="forgot-link" onclick="handleForgot()">Mot de passe oublié ?</span>
             <button type="submit" class="btn-submit" id="loginBtn">
               <span class="btn-submit-text">Se connecter →</span>
@@ -210,6 +271,7 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fi
             Commander sans compte via WhatsApp
           </a>
         </div>
+
         <!-- REGISTER -->
         <div class="form-section" id="sectionRegister">
           <div class="form-eyebrow">✦ Bienvenue</div>
@@ -221,15 +283,15 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fi
               <div class="field"><label class="field-label">Prénom *</label><div class="field-input-wrap has-icon"><span class="field-icon">👤</span><input type="text" id="regPrenom" placeholder="Kofi" required></div></div>
               <div class="field"><label class="field-label">Nom *</label><div class="field-input-wrap has-icon"><span class="field-icon">👤</span><input type="text" id="regNom" placeholder="Mensah" required></div></div>
             </div>
-            <div class="field"><label class="field-label">Email *</label><div class="field-input-wrap has-icon"><span class="field-icon">✉️</span><input type="email" id="regEmail" placeholder="email@exemple.com" autocomplete="email" required></div></div>
+            <div class="field"><label class="field-label">Email *</label><div class="field-input-wrap has-icon"><span class="field-icon">✉️</span><input type="email" id="regEmail" placeholder="email@exemple.com" required></div></div>
             <div class="field"><label class="field-label">Téléphone</label><div class="field-input-wrap has-icon"><span class="field-icon">📞</span><input type="tel" id="regTel" placeholder="+229 01 43 83 80 31"></div></div>
             <div class="field">
               <label class="field-label">Mot de passe *</label>
-              <div class="field-input-wrap pw-wrap"><input type="password" id="regPw" placeholder="Min. 6 caractères" autocomplete="new-password" required oninput="checkPwStrength(this.value)"><button type="button" class="pw-eye" onclick="togglePw('regPw',this)">👁</button></div>
+              <div class="field-input-wrap pw-wrap"><input type="password" id="regPw" placeholder="Min. 6 caractères" required oninput="checkPwStrength(this.value)"><button type="button" class="pw-eye" onclick="togglePw('regPw',this)">👁</button></div>
               <div class="pw-strength-bar"><div class="strength-seg" id="seg1"></div><div class="strength-seg" id="seg2"></div><div class="strength-seg" id="seg3"></div><div class="strength-seg" id="seg4"></div></div>
               <div class="pw-strength-label" id="pwStrLabel"></div>
             </div>
-            <div class="field"><label class="field-label">Confirmer le mot de passe *</label><div class="field-input-wrap pw-wrap"><input type="password" id="regPw2" placeholder="Répéter..." autocomplete="new-password" required><button type="button" class="pw-eye" onclick="togglePw('regPw2',this)">👁</button></div></div>
+            <div class="field"><label class="field-label">Confirmer *</label><div class="field-input-wrap pw-wrap"><input type="password" id="regPw2" placeholder="Répéter..." required><button type="button" class="pw-eye" onclick="togglePw('regPw2',this)">👁</button></div></div>
             <div class="check-row"><input type="checkbox" id="regTerms"><label for="regTerms">J'accepte les <a href="#">conditions d'utilisation</a></label></div>
             <button type="submit" class="btn-submit" id="registerBtn">
               <span class="btn-submit-text">Créer mon compte →</span>
@@ -238,6 +300,7 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fi
           </form>
         </div>
       </div>
+
       <!-- DASHBOARD -->
       <div class="dashboard-section" id="dashboardPanel">
         <div class="dash-welcome">
@@ -255,7 +318,7 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset;-webkit-text-fi
           <h4>📦 Mes dernières commandes</h4>
           <div id="ordersList"><div class="empty-orders">Aucune commande.<br><a href="index.html">Découvrir la boutique →</a></div></div>
         </div>
-        <button class="btn-logout" onclick="handleLogout()">🚪 Se déconnecter</button>
+        <button class="btn-logout-user" onclick="handleLogout()">🚪 Se déconnecter</button>
       </div>
     </div>
   </div>
@@ -268,7 +331,6 @@ function saveUsers(u){localStorage.setItem(USERS_KEY,JSON.stringify(u))}
 function getUser(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||"null")}catch{return null}}
 let toastT;
 function toast(msg){const t=document.getElementById("authToast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),3000)}
-(function(){const el=document.getElementById("particles");const colors=["rgba(232,51,109,.6)","rgba(58,86,200,.5)","rgba(255,92,147,.4)","rgba(58,86,200,.3)"];for(let i=0;i<28;i++){const d=document.createElement("div");d.className="p-dot";const sz=2+Math.random()*4;d.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${7+Math.random()*12}s;animation-delay:${Math.random()*10}s;border-radius:50%`;el.appendChild(d)}})();
 window.addEventListener("DOMContentLoaded",()=>{const u=getUser();if(u)showDashboard(u)});
 function switchTab(tab){document.getElementById("tabLogin").classList.toggle("active",tab==="login");document.getElementById("tabRegister").classList.toggle("active",tab==="register");document.getElementById("sectionLogin").classList.toggle("active",tab==="login");document.getElementById("sectionRegister").classList.toggle("active",tab==="register");document.getElementById("loginError").textContent="";document.getElementById("registerError").textContent=""}
 function togglePw(id,btn){const i=document.getElementById(id);i.type=i.type==="password"?"text":"password";btn.textContent=i.type==="password"?"👁":"🙈"}
