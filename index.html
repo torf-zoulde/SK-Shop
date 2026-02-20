@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SK'Shops | Mode & Style</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-updates.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -31,15 +32,44 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-                <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+                <!-- HAMBURGER BUTTON -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span class="hbar"></span>
+                    <span class="hbar"></span>
+                    <span class="hbar"></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- ===== HERO — image vient du body ===== -->
+    <!-- MOBILE MENU PANEL -->
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <div class="mob-menu" id="mobMenu">
+        <div class="mob-header">
+            <span class="mob-logo">SK'Shops</span>
+            <button class="mob-close" id="mobClose">✕</button>
+        </div>
+        <nav class="mob-nav">
+            <a href="#accueil"    class="mob-link"><span>🏠</span> Accueil</a>
+            <a href="#nouveautes" class="mob-link"><span>✨</span> Nouveautés</a>
+            <a href="#vetements"  class="mob-link"><span>👗</span> Vêtements</a>
+            <a href="#chaussures" class="mob-link"><span>👟</span> Chaussures</a>
+            <a href="#galerie"    class="mob-link"><span>🖼</span> Galerie</a>
+            <a href="#avis"       class="mob-link"><span>⭐</span> Avis</a>
+            <a href="#contact"    class="mob-link"><span>📞</span> Contact</a>
+        </nav>
+        <div class="mob-footer">
+            <a href="auth.html" class="mob-auth">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Mon compte
+            </a>
+            <p class="mob-tagline">Mode & Style — Cotonou</p>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
     <header id="accueil">
         <div class="hero-content">
-            <!-- Texte gauche -->
             <div class="hero-text">
                 <span class="hero-tag">✦ Nouvelle Collection 2026</span>
                 <h1>Style.<br>Élégance.<br>Vous.</h1>
@@ -57,13 +87,14 @@
                 </div>
             </div>
 
-            <!-- Card droite avec le nom de la boutique -->
+            <!-- HERO CARD — sans stickers, texte centré propre -->
             <div class="hero-right-box">
                 <div class="hero-brand-card">
-                    <div class="hero-emoji-row">👗 👟 👠</div>
                     <span class="hero-brand-title">SK'Shops</span>
-                    <p class="hero-brand-sub">Mode & Style — Cotonou</p>
-                    <span class="hero-badge-floating">✨ Nouveauté 2026</span>
+                    <div class="hero-brand-line"></div>
+                    <p class="hero-brand-sub">Mode &amp; Style — Cotonou</p>
+                    <p class="hero-brand-desc">Vêtements &amp; Chaussures<br>pour femme, homme &amp; enfant</p>
+                    <span class="hero-badge-floating">Nouveauté 2026</span>
                     <p class="hero-price-tag">À partir de <strong>5 000 FCFA</strong></p>
                 </div>
             </div>
@@ -199,26 +230,102 @@
         </div>
     </section>
 
-    <!-- ===== GALERIE ===== -->
+    <!-- ===== GALERIE — GRAND SLIDER 1 PAR 1 ===== -->
     <section id="galerie">
         <span class="section-tag">Inspirations</span>
         <h2>Notre Galerie</h2>
         <p class="section-sub">Quelques-unes de nos plus belles pièces</p>
-        <div class="gallery-carousel">
-            <button class="carousel-btn prev" id="prevBtn">‹</button>
-            <div class="carousel-track-wrap">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="gallery-item"><div class="gal-placeholder">👗 Robes</div></div>
-                    <div class="gallery-item"><div class="gal-placeholder">👟 Sneakers</div></div>
-                    <div class="gallery-item"><div class="gal-placeholder">👔 Chemises</div></div>
-                    <div class="gallery-item"><div class="gal-placeholder">👠 Escarpins</div></div>
-                    <div class="gallery-item"><div class="gal-placeholder">🧥 Vestes</div></div>
-                    <div class="gallery-item"><div class="gal-placeholder">👞 Classiques</div></div>
+
+        <div class="gal-slider-wrap">
+            <div class="gal-slider" id="galSlider">
+                <!-- Slide 1 -->
+                <div class="gal-slide active">
+                    <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(232,51,109,0.18) 0%,rgba(20,8,2,0.92) 100%)">
+                        <div class="gal-slide-emoji">👗</div>
+                        <div class="gal-slide-info">
+                            <span class="gal-slide-cat">Femme</span>
+                            <h3 class="gal-slide-title">Robes &amp; Élégance</h3>
+                            <p class="gal-slide-desc">Des robes raffinées pour toutes les occasions</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="gal-slide">
+                    <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(40,60,180,0.18) 0%,rgba(20,8,2,0.92) 100%)">
+                        <div class="gal-slide-emoji">👟</div>
+                        <div class="gal-slide-info">
+                            <span class="gal-slide-cat">Chaussures</span>
+                            <h3 class="gal-slide-title">Sneakers Urbains</h3>
+                            <p class="gal-slide-desc">Style et confort pour vos sorties quotidiennes</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="gal-slide">
+                    <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(20,100,60,0.18) 0%,rgba(20,8,2,0.92) 100%)">
+                        <div class="gal-slide-emoji">👔</div>
+                        <div class="gal-slide-info">
+                            <span class="gal-slide-cat">Homme</span>
+                            <h3 class="gal-slide-title">Chemises &amp; Style</h3>
+                            <p class="gal-slide-desc">Du casual au formel, le bon look pour chaque moment</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="gal-slide">
+                    <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(180,20,60,0.2) 0%,rgba(20,8,2,0.92) 100%)">
+                        <div class="gal-slide-emoji">👠</div>
+                        <div class="gal-slide-info">
+                            <span class="gal-slide-cat">Femme</span>
+                            <h3 class="gal-slide-title">Escarpins &amp; Glamour</h3>
+                            <p class="gal-slide-desc">Des talons qui subliment chaque pas</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="gal-slide">
+                    <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(100,60,20,0.2) 0%,rgba(20,8,2,0.92) 100%)">
+                        <div class="gal-slide-emoji">🧥</div>
+                        <div class="gal-slide-info">
+                            <span class="gal-slide-cat">Mode</span>
+                            <h3 class="gal-slide-title">Vestes &amp; Blazers</h3>
+                            <p class="gal-slide-desc">L'élégance à portée de main pour toutes les saisons</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="gal-slide">
+                    <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(80,50,20,0.2) 0%,rgba(20,8,2,0.92) 100%)">
+                        <div class="gal-slide-emoji">👞</div>
+                        <div class="gal-slide-info">
+                            <span class="gal-slide-cat">Homme</span>
+                            <h3 class="gal-slide-title">Classiques Intemporels</h3>
+                            <p class="gal-slide-desc">Des chaussures qui traversent les tendances</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button class="carousel-btn next" id="nextBtn">›</button>
+
+            <!-- Arrows -->
+            <button class="gal-btn gal-btn-prev" id="galPrev">&#8249;</button>
+            <button class="gal-btn gal-btn-next" id="galNext">&#8250;</button>
+
+            <!-- Counter pill -->
+            <div class="gal-counter" id="galCounter">1 / 6</div>
         </div>
-        <div class="carousel-dots" id="carouselDots"></div>
+
+        <!-- Dots -->
+        <div class="gal-dots" id="galDots"></div>
+
+        <!-- Thumbnails strip -->
+        <div class="gal-thumbs" id="galThumbs">
+            <button class="gal-thumb active" data-i="0">👗<span>Robes</span></button>
+            <button class="gal-thumb" data-i="1">👟<span>Sneakers</span></button>
+            <button class="gal-thumb" data-i="2">👔<span>Chemises</span></button>
+            <button class="gal-thumb" data-i="3">👠<span>Escarpins</span></button>
+            <button class="gal-thumb" data-i="4">🧥<span>Vestes</span></button>
+            <button class="gal-thumb" data-i="5">👞<span>Classiques</span></button>
+        </div>
     </section>
 
     <!-- ===== AVANTAGES ===== -->
@@ -286,7 +393,7 @@
     <div id="adminClickHint" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:white;padding:10px 24px;border-radius:30px;font-size:14px;opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:9999;white-space:nowrap;"></div>
 
     <!-- WHATSAPP FLOTTANT -->
-    <a href="https://wa.me/1041288711?text=Bonjour%20SK'Shops%20!" class="whatsapp-float" target="_blank" id="waFloat" title="Discuter sur WhatsApp">
+    <a href="https://wa.me/1041288711?text=Bonjour%20SK'Shops%20!" class="whatsapp-float" target="_blank" id="waFloat">
         <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span class="wa-tooltip">Chattez avec nous !</span>
     </a>
@@ -310,22 +417,91 @@
 
     <script src="script.js"></script>
     <script>
-    // Mobile menu
-    document.getElementById('menuToggle').addEventListener('click',function(){
-        const nav=document.getElementById('navLinks');
-        nav.classList.toggle('open');
-        this.textContent=nav.classList.contains('open')?'✕':'☰';
+    // ══════════════════════════════════════
+    //  MOBILE MENU
+    // ══════════════════════════════════════
+    const menuToggle = document.getElementById('menuToggle');
+    const mobMenu    = document.getElementById('mobMenu');
+    const mobOverlay = document.getElementById('mobOverlay');
+    const mobClose   = document.getElementById('mobClose');
+
+    function openMob() {
+        mobMenu.classList.add('open');
+        mobOverlay.classList.add('active');
+        menuToggle.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMob() {
+        mobMenu.classList.remove('open');
+        mobOverlay.classList.remove('active');
+        menuToggle.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => mobMenu.classList.contains('open') ? closeMob() : openMob());
+    mobClose.addEventListener('click', closeMob);
+    mobOverlay.addEventListener('click', closeMob);
+    document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', closeMob));
+
+    // ══════════════════════════════════════
+    //  NAVBAR SCROLL
+    // ══════════════════════════════════════
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
-    document.querySelectorAll('.nav-links a').forEach(a=>{
-        a.addEventListener('click',()=>{
-            document.getElementById('navLinks').classList.remove('open');
-            document.getElementById('menuToggle').textContent='☰';
-        });
-    });
-    // Navbar scroll
-    window.addEventListener('scroll',()=>{
-        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
-    });
+
+    // ══════════════════════════════════════
+    //  GALERIE — SLIDER 1 PAR 1
+    // ══════════════════════════════════════
+    (function() {
+        const slides  = document.querySelectorAll('.gal-slide');
+        const thumbs  = document.querySelectorAll('.gal-thumb');
+        const dotsEl  = document.getElementById('galDots');
+        const counter = document.getElementById('galCounter');
+        const N       = slides.length;
+        let cur = 0, autoT;
+
+        // Build dots
+        for (let i = 0; i < N; i++) {
+            const d = document.createElement('button');
+            d.className = 'gal-dot' + (i === 0 ? ' active' : '');
+            d.addEventListener('click', () => goTo(i));
+            dotsEl.appendChild(d);
+        }
+
+        function goTo(next) {
+            slides[cur].classList.remove('active');
+            slides[cur].classList.add('out');
+            thumbs[cur].classList.remove('active');
+            dotsEl.children[cur].classList.remove('active');
+
+            cur = ((next % N) + N) % N;
+
+            slides[cur].classList.add('active');
+            slides[cur].classList.remove('out');
+            thumbs[cur].classList.add('active');
+            dotsEl.children[cur].classList.add('active');
+            counter.textContent = (cur + 1) + ' / ' + N;
+
+            // cleanup old out
+            setTimeout(() => document.querySelectorAll('.gal-slide.out').forEach(s => s.classList.remove('out')), 600);
+        }
+
+        function startAuto() { autoT = setInterval(() => goTo(cur + 1), 4500); }
+        function stopAuto()  { clearInterval(autoT); }
+
+        document.getElementById('galPrev').addEventListener('click', () => { stopAuto(); goTo(cur - 1); startAuto(); });
+        document.getElementById('galNext').addEventListener('click', () => { stopAuto(); goTo(cur + 1); startAuto(); });
+        thumbs.forEach(t => t.addEventListener('click', () => { stopAuto(); goTo(+t.dataset.i); startAuto(); }));
+
+        // Swipe
+        let tx = 0;
+        const wrap = document.querySelector('.gal-slider-wrap');
+        wrap.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopAuto(); }, {passive:true});
+        wrap.addEventListener('touchend',   e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d)>50) goTo(d>0?cur+1:cur-1); startAuto(); });
+
+        startAuto();
+    })();
     </script>
 </body>
 </html>
