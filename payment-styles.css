@@ -1,0 +1,691 @@
+/* =============================================
+   SK'SHOPS — payment-styles.css
+   Styles pour le tunnel de paiement 3 étapes
+   ============================================= */
+
+/* ═══════════════════════════════════════
+   OPTIONS DE PAIEMENT — ÉTAPE 1
+   ═══════════════════════════════════════ */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.pay-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 2px solid rgba(90,58,40,0.12);
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: rgba(255,252,248,0.8);
+    position: relative;
+    user-select: none;
+}
+
+.pay-option input[type="radio"] {
+    display: none;
+}
+
+.pay-option:hover {
+    border-color: rgba(232,51,109,0.3);
+    background: rgba(255,240,245,0.6);
+}
+
+.pay-option.selected {
+    border-color: var(--rose);
+    background: rgba(232,51,109,0.06);
+    box-shadow: 0 0 0 1px rgba(232,51,109,0.2);
+}
+
+.pay-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.pay-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.pay-details strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+}
+
+.pay-details span {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.pay-tick {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(90,58,40,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: transparent;
+    transition: all 0.22s ease;
+    flex-shrink: 0;
+}
+
+.pay-option.selected .pay-tick {
+    background: var(--grad-rose);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 3px 10px rgba(232,51,109,0.35);
+}
+
+/* ═══════════════════════════════════════
+   BOUTON RETOUR
+   ═══════════════════════════════════════ */
+.co-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+    font-family: var(--font-body);
+}
+.co-back-btn:hover { color: var(--rose); }
+
+/* ═══════════════════════════════════════
+   HEADER ÉTAPES AVEC PROGRESSION
+   ═══════════════════════════════════════ */
+.co-step-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.co-steps-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 16px;
+}
+
+.co-step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(90,58,40,0.18);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.co-step-dot.active {
+    background: var(--grad-rose);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 14px rgba(232,51,109,0.4);
+    transform: scale(1.1);
+}
+
+.co-step-dot.done {
+    background: var(--grad-rose);
+    border-color: transparent;
+    color: white;
+    font-size: 13px;
+}
+
+.co-step-line {
+    width: 40px;
+    height: 2px;
+    background: rgba(90,58,40,0.12);
+    transition: background 0.3s;
+}
+
+.co-step-line.done {
+    background: var(--grad-rose);
+}
+
+.co-step-header h4 {
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.co-step-header p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* ═══════════════════════════════════════
+   LISTE DES OPÉRATEURS — ÉTAPE 2
+   ═══════════════════════════════════════ */
+.operators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.op-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 2px solid rgba(90,58,40,0.12);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: rgba(255,252,248,0.9);
+    text-align: left;
+    width: 100%;
+    font-family: var(--font-body);
+    position: relative;
+}
+
+.op-card:hover {
+    border-color: rgba(90,58,40,0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(10,4,1,0.1);
+}
+
+.op-card.active {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 1px rgba(232,51,109,0.2), 0 6px 20px rgba(232,51,109,0.12);
+    background: rgba(232,51,109,0.04);
+}
+
+.op-logo-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+.op-text {
+    flex: 1;
+}
+
+.op-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 3px;
+}
+
+.op-text span {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.op-radio-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(90,58,40,0.2);
+    transition: all 0.22s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.op-card.active .op-radio-circle {
+    border-color: var(--rose);
+    background: var(--rose);
+    box-shadow: 0 0 0 3px rgba(232,51,109,0.2);
+}
+
+.op-card.active .op-radio-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.co-amount-pill {
+    text-align: center;
+    background: rgba(255,240,225,0.7);
+    border: 1px solid rgba(90,58,40,0.12);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--text-mid);
+}
+
+.co-amount-pill strong {
+    font-family: var(--font-title);
+    font-size: 18px;
+    background: var(--grad-rose);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ═══════════════════════════════════════
+   CARTE PAIEMENT MOBILE — ÉTAPE 3
+   ═══════════════════════════════════════ */
+.mobile-pay-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(90,58,40,0.12);
+    box-shadow: 0 8px 32px rgba(10,4,1,0.12);
+    margin-bottom: 18px;
+}
+
+.mpc-top {
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.mpc-logo-big {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.mpc-top-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mpc-op-name {
+    font-family: var(--font-title);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.mpc-op-ussd {
+    font-size: 11px;
+    opacity: 0.75;
+}
+
+.mpc-body {
+    background: white;
+    padding: 20px 22px;
+}
+
+.mpc-amount-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255,240,225,0.6);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: var(--text-mid);
+}
+
+.mpc-amount-row strong {
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 800;
+    background: var(--grad-rose);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Champ téléphone */
+.mpc-number-section {
+    margin-bottom: 18px;
+}
+
+.phone-input-wrap {
+    display: flex;
+    align-items: center;
+    border: 2px solid rgba(90,58,40,0.15);
+    border-radius: 11px;
+    overflow: hidden;
+    background: white;
+    transition: all 0.25s;
+    margin-top: 6px;
+}
+
+.phone-input-wrap:focus-within {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(232,51,109,0.12);
+}
+
+.phone-flag {
+    padding: 0 10px 0 14px;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.phone-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-mid);
+    padding-right: 10px;
+    border-right: 1.5px solid rgba(90,58,40,0.1);
+    flex-shrink: 0;
+}
+
+.phone-input-wrap input {
+    flex: 1;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 13px 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    letter-spacing: 0.08em;
+    background: transparent;
+    margin: 0 !important;
+    width: 100%;
+}
+
+.phone-hint {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 6px;
+}
+
+/* Comment ça marche */
+.mpc-how-it-works {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mpc-step-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-mid);
+}
+
+.mpc-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Bouton payer */
+.btn-pay-confirm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 13px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    transition: all 0.25s ease;
+}
+
+.btn-pay-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.32);
+    filter: brightness(1.06);
+}
+
+.btn-pay-confirm span {
+    font-size: 18px;
+}
+
+.secure-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+/* ═══════════════════════════════════════
+   ÉCRAN DE TRAITEMENT
+   ═══════════════════════════════════════ */
+.co-processing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    gap: 12px;
+    min-height: 280px;
+}
+
+.co-processing-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid rgba(90,58,40,0.1);
+    border-top-color: var(--op-c, var(--rose));
+    animation: spin 0.9s linear infinite;
+    position: absolute;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.co-processing-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.co-processing h4 {
+    font-family: var(--font-title);
+    font-size: 20px;
+    color: var(--text-dark);
+    margin-top: 8px;
+}
+
+.co-processing p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.co-processing-num {
+    font-weight: 700;
+    color: var(--text-mid) !important;
+    font-size: 14px !important;
+}
+
+/* ═══════════════════════════════════════
+   ÉCRAN DE SUCCÈS
+   ═══════════════════════════════════════ */
+.co-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 10px 10px;
+    gap: 0;
+}
+
+.co-success-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(46,204,138,0.12);
+    border: 3px solid rgba(46,204,138,0.3);
+    position: absolute;
+    animation: successPulse 1.5s ease-out both;
+}
+
+@keyframes successPulse {
+    0%   { transform: scale(0.5); opacity: 0; }
+    60%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.co-success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 900;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+    animation: bounceIn 0.5s 0.1s ease both;
+}
+
+@keyframes bounceIn {
+    0%   { transform: scale(0); }
+    60%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.co-success h3 {
+    font-family: var(--font-title);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.co-success p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.co-success-ref {
+    background: rgba(255,240,225,0.8);
+    border: 1px solid rgba(90,58,40,0.12);
+    border-radius: 50px;
+    padding: 7px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-mid);
+    margin-bottom: 10px;
+    letter-spacing: 0.06em;
+}
+
+.co-success-sms {
+    font-size: 12px !important;
+    color: var(--text-light) !important;
+    background: rgba(46,204,138,0.08);
+    border-radius: 9px;
+    padding: 10px 14px;
+    border: 1px solid rgba(46,204,138,0.2);
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════
+   CHECKOUT FORM — améliorations style
+   ═══════════════════════════════════════ */
+.checkout-form input,
+.checkout-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid rgba(90,58,40,0.12);
+    border-radius: 11px;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 12px;
+    font-family: var(--font-body);
+    transition: all 0.25s;
+    background: white;
+    color: var(--text-dark);
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(232,51,109,0.1);
+}
+
+/* Scrollbar dans checkout modal */
+.checkout-modal {
+    max-height: 88vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(232,51,109,0.3) transparent;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .pay-option { padding: 12px 14px; gap: 12px; }
+    .pay-icon-wrap { width: 38px; height: 38px; font-size: 17px; }
+    .op-logo-badge { width: 44px; height: 44px; font-size: 11px; }
+    .mpc-top { padding: 16px 18px; }
+    .mpc-body { padding: 16px 18px; }
+    .btn-pay-confirm { padding: 14px; font-size: 15px; }
+    .co-steps-track { gap: 0; }
+    .co-step-line { width: 28px; }
+}

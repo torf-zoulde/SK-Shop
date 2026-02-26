@@ -44,6 +44,7 @@
                 <a href="#" class="nav-item active" data-tab="products"><span>👗</span> Produits</a>
                 <a href="#" class="nav-item" data-tab="orders"><span>📦</span> Commandes</a>
                 <a href="#" class="nav-item" data-tab="clients"><span>👥</span> Clients</a>
+                <a href="#" class="nav-item" data-tab="analytics"><span>📊</span> Analytiques</a>
                 <a href="#" class="nav-item" data-tab="settings"><span>⚙️</span> Paramètres</a>
             </nav>
             <div class="sidebar-footer">
@@ -84,19 +85,80 @@
 
             <!-- COMMANDES -->
             <section id="tab-orders" class="tab-content">
-                <div class="orders-list" id="adminOrdersList">
-                    <div class="coming-soon">
-                        <span>📦</span>
-                        <h3>Gestion des commandes</h3>
-                        <p>Toutes les commandes passées sur le site ou via WhatsApp.</p>
-                    </div>
-                </div>
+                <div id="adminOrdersList"></div>
             </section>
 
             <!-- CLIENTS -->
             <section id="tab-clients" class="tab-content">
                 <div class="clients-table" id="clientsTable">
                     <div class="coming-soon"><span>👥</span><h3>Clients inscrits</h3><p>Liste de tous vos clients enregistrés.</p></div>
+                </div>
+            </section>
+
+            <!-- ANALYTIQUES -->
+            <section id="tab-analytics" class="tab-content">
+                <div class="analytics-header">
+                    <div class="ai-badge">🤖 Propulsé par l'IA</div>
+                    <h3 class="analytics-title">Centre d'Analytiques & IA</h3>
+                    <p class="analytics-sub">Insights en temps réel sur vos ventes, produits et clients</p>
+                </div>
+
+                <div class="analytics-grid">
+                    <!-- KPIs rapides -->
+                    <div class="kpi-row" id="kpiRow"></div>
+
+                    <!-- Graphique des ventes -->
+                    <div class="analytics-card wide">
+                        <div class="card-head">
+                            <span>📈 Évolution des Ventes</span>
+                            <div class="period-btns">
+                                <button class="period-btn active" data-period="7">7j</button>
+                                <button class="period-btn" data-period="30">30j</button>
+                                <button class="period-btn" data-period="90">3 mois</button>
+                            </div>
+                        </div>
+                        <canvas id="salesChart" height="120"></canvas>
+                    </div>
+
+                    <!-- Top produits -->
+                    <div class="analytics-card">
+                        <div class="card-head"><span>🏆 Top Produits Vendus</span></div>
+                        <div id="topProducts"></div>
+                    </div>
+
+                    <!-- Répartition catégories -->
+                    <div class="analytics-card">
+                        <div class="card-head"><span>🥧 Catégories</span></div>
+                        <canvas id="catChart" height="180"></canvas>
+                    </div>
+
+                    <!-- Analyse avis clients -->
+                    <div class="analytics-card wide">
+                        <div class="card-head"><span>⭐ Analyse des Avis Clients</span></div>
+                        <div id="reviewsAnalysis"></div>
+                    </div>
+                </div>
+
+                <!-- IA Suggestions -->
+                <div class="ai-suggestions-section">
+                    <div class="ai-header">
+                        <div class="ai-icon-wrap">🤖</div>
+                        <div>
+                            <h4>Assistant IA — Suggestions en temps réel</h4>
+                            <p>Posez une question ou obtenez des insights sur votre boutique</p>
+                        </div>
+                        <button class="btn btn-primary" id="refreshAiBtn">↻ Actualiser</button>
+                    </div>
+                    <div class="ai-suggestions" id="aiSuggestions">
+                        <div class="ai-loading">
+                            <span class="ai-spinner"></span> Analyse en cours...
+                        </div>
+                    </div>
+                    <div class="ai-chat-wrap">
+                        <input type="text" id="aiChatInput" placeholder="Ex: Quels produits devrais-je promouvoir ce mois-ci ?">
+                        <button class="btn btn-primary" id="aiChatSend">Envoyer →</button>
+                    </div>
+                    <div id="aiChatResponse" class="ai-chat-response" style="display:none"></div>
                 </div>
             </section>
 
@@ -139,62 +201,90 @@
             </div>
             <form id="productForm" class="modal-body">
                 <input type="hidden" id="editId">
-                <div class="field"><label>Nom de l'article *</label><input type="text" id="pName" placeholder="Ex: Robe Soirée Noire" required></div>
-                <div class="field-row">
-                    <div class="field"><label>Prix (FCFA) *</label><input type="number" id="pPrice" placeholder="18000" min="0" required></div>
+
+                <!-- TABS dans modal -->
+                <div class="modal-tabs">
+                    <button type="button" class="mtab active" data-mtab="info">📋 Infos</button>
+                    <button type="button" class="mtab" data-mtab="gallery">🖼️ Galerie</button>
+                </div>
+
+                <!-- TAB INFO -->
+                <div class="mtab-panel active" id="mtab-info">
+                    <div class="field"><label>Nom de l'article *</label><input type="text" id="pName" placeholder="Ex: Robe Soirée Noire" required></div>
+                    <div class="field-row">
+                        <div class="field"><label>Prix (FCFA) *</label><input type="number" id="pPrice" placeholder="18000" min="0" required></div>
+                        <div class="field">
+                            <label>Badge</label>
+                            <select id="pBadge">
+                                <option value="">Aucun</option>
+                                <option value="Nouveau">Nouveau</option>
+                                <option value="Bestseller">Bestseller</option>
+                                <option value="Populaire">Populaire</option>
+                                <option value="Promo">Promo</option>
+                                <option value="Exclusif">Exclusif</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="field">
-                        <label>Badge</label>
-                        <select id="pBadge">
-                            <option value="">Aucun</option>
-                            <option value="Nouveau">Nouveau</option>
-                            <option value="Bestseller">Bestseller</option>
-                            <option value="Populaire">Populaire</option>
-                            <option value="Promo">Promo</option>
-                            <option value="Exclusif">Exclusif</option>
+                        <label>Catégorie</label>
+                        <select id="pCat">
+                            <option value="vetements">Vêtements</option>
+                            <option value="chaussures">Chaussures</option>
+                            <option value="nouveautes">Nouveautés</option>
                         </select>
                     </div>
-                </div>
-                <div class="field">
-                    <label>Catégorie</label>
-                    <select id="pCat">
-                        <option value="vetements">Vêtements</option>
-                        <option value="chaussures">Chaussures</option>
-                        <option value="nouveautes">Nouveautés</option>
-                    </select>
-                </div>
-                <div class="field"><label>Description *</label><textarea id="pDesc" rows="3" placeholder="Décrivez l'article..." required></textarea></div>
-                <div class="field">
-                    <label>Emoji / Icône</label>
-                    <div class="emoji-grid" id="emojiGrid">
-                        <span data-emoji="👗" class="emoji-opt active">👗</span>
-                        <span data-emoji="👔" class="emoji-opt">👔</span>
-                        <span data-emoji="👖" class="emoji-opt">👖</span>
-                        <span data-emoji="🧥" class="emoji-opt">🧥</span>
-                        <span data-emoji="👟" class="emoji-opt">👟</span>
-                        <span data-emoji="👠" class="emoji-opt">👠</span>
-                        <span data-emoji="👞" class="emoji-opt">👞</span>
-                        <span data-emoji="🩴" class="emoji-opt">🩴</span>
-                        <span data-emoji="🎀" class="emoji-opt">🎀</span>
-                        <span data-emoji="🩰" class="emoji-opt">🩰</span>
+                    <div class="field"><label>Description *</label><textarea id="pDesc" rows="3" placeholder="Décrivez l'article..." required></textarea></div>
+                    <div class="field">
+                        <label>Emoji / Icône (affiché seulement si pas d'image)</label>
+                        <div class="emoji-grid" id="emojiGrid">
+                            <span data-emoji="" class="emoji-opt active emoji-none">∅ Aucun</span>
+                            <span data-emoji="👗" class="emoji-opt">👗</span>
+                            <span data-emoji="👔" class="emoji-opt">👔</span>
+                            <span data-emoji="👖" class="emoji-opt">👖</span>
+                            <span data-emoji="🧥" class="emoji-opt">🧥</span>
+                            <span data-emoji="👟" class="emoji-opt">👟</span>
+                            <span data-emoji="👠" class="emoji-opt">👠</span>
+                            <span data-emoji="👞" class="emoji-opt">👞</span>
+                            <span data-emoji="🩴" class="emoji-opt">🩴</span>
+                            <span data-emoji="🎀" class="emoji-opt">🎀</span>
+                            <span data-emoji="🩰" class="emoji-opt">🩰</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Photo principale</label>
+                        <div class="img-upload-zone" id="imgUploadZone">
+                            <div class="img-preview" id="imgPreview"><span>📷</span><p>Choisir une photo</p></div>
+                            <img id="imgPreviewImg" src="" alt="" style="display:none;width:100%;max-height:200px;object-fit:cover;border-radius:10px">
+                            <button type="button" class="img-remove-btn" id="imgRemoveBtn" style="display:none">✕ Supprimer</button>
+                        </div>
+                        <input type="file" id="pImgFile" accept="image/*" style="display:none">
+                        <input type="hidden" id="pImg">
+                    </div>
+                    <div class="field">
+                        <label>Disponibilité</label>
+                        <div class="toggle-wrap">
+                            <label class="toggle"><input type="checkbox" id="pAvailable" checked><span class="slider"></span></label>
+                            <span id="availLabel">Disponible</span>
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label>Photo de l'article</label>
-                    <div class="img-upload-zone" id="imgUploadZone">
-                        <div class="img-preview" id="imgPreview"><span>📷</span><p>Choisir une photo</p></div>
-                        <img id="imgPreviewImg" src="" alt="" style="display:none;width:100%;max-height:200px;object-fit:cover;border-radius:10px">
-                        <button type="button" class="img-remove-btn" id="imgRemoveBtn" style="display:none">✕ Supprimer</button>
+
+                <!-- TAB GALERIE -->
+                <div class="mtab-panel" id="mtab-gallery">
+                    <div class="gallery-info">
+                        <p>📸 Ajoutez jusqu'à <strong>8 photos</strong> qui défileront dans la galerie de ce produit sur la boutique.</p>
                     </div>
-                    <input type="file" id="pImgFile" accept="image/*" style="display:none">
-                    <input type="hidden" id="pImg">
-                </div>
-                <div class="field">
-                    <label>Disponibilité</label>
-                    <div class="toggle-wrap">
-                        <label class="toggle"><input type="checkbox" id="pAvailable" checked><span class="slider"></span></label>
-                        <span id="availLabel">Disponible</span>
+                    <div class="gallery-upload-area" id="galleryUploadArea">
+                        <div class="gallery-add-btn" id="galleryAddBtn">
+                            <span>+</span>
+                            <p>Ajouter des photos</p>
+                        </div>
                     </div>
+                    <input type="file" id="galleryFileInput" accept="image/*" multiple style="display:none">
+                    <p class="gallery-hint">Les images s'affichent dans l'ordre. Cliquez sur ✕ pour supprimer.</p>
+                    <div class="gallery-grid" id="galleryGrid"></div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-ghost" id="cancelModal">Annuler</button>
                     <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
@@ -203,7 +293,19 @@
         </div>
     </div>
 
+    <!-- MODAL COMMANDE DETAIL -->
+    <div class="modal-overlay" id="orderModalOverlay">
+        <div class="modal order-modal">
+            <div class="modal-header">
+                <h3>Détail de la Commande</h3>
+                <button class="modal-close" id="closeOrderModal">✕</button>
+            </div>
+            <div class="modal-body" id="orderModalBody"></div>
+        </div>
+    </div>
+
     <div class="toast" id="toast"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="admin.js"></script>
 </body>
 </html>

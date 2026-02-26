@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SK'Shops | Mode & Style</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="payment-styles.css">
     <link rel="stylesheet" href="mobile-updates.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -50,12 +51,12 @@
             <button class="mob-close" id="mobClose">✕</button>
         </div>
         <nav class="mob-nav">
-            <a href="#accueil"    class="mob-link"><span>🏠</span> Accueil</a>
-            <a href="#nouveautes" class="mob-link"><span>✨</span> Nouveautés</a>
-            <a href="#vetements"  class="mob-link"><span>👗</span> Vêtements</a>
-            <a href="#chaussures" class="mob-link"><span>👟</span> Chaussures</a>
-            <a href="#galerie"    class="mob-link"><span>🖼</span> Galerie</a>
-            <a href="#avis"       class="mob-link"><span>⭐</span> Avis</a>
+            <a href="#accueil"    class="mob-link"><span></span> Accueil</a>
+            <a href="#nouveautes" class="mob-link"><span></span> Nouveautés</a>
+            <a href="#vetements"  class="mob-link"><span></span> Vêtements</a>
+            <a href="#chaussures" class="mob-link"><span></span> Chaussures</a>
+            <a href="#galerie"    class="mob-link"><span></span> Galerie</a>
+            <a href="#avis"       class="mob-link"><span></span> Avis</a>
             <a href="#contact"    class="mob-link"><span>📞</span> Contact</a>
         </nav>
         <div class="mob-footer">
@@ -103,13 +104,13 @@
 
     <!-- ===== CATÉGORIES STRIP ===== -->
     <section id="categories" class="categories-strip">
-        <a class="cat-chip active" href="#vetements">👗 Femme</a>
-        <a class="cat-chip" href="#vetements">👕 Homme</a>
-        <a class="cat-chip" href="#vetements">👶 Enfant</a>
-        <a class="cat-chip" href="#chaussures">👟 Sneakers</a>
-        <a class="cat-chip" href="#chaussures">👠 Escarpins</a>
-        <a class="cat-chip" href="#chaussures">👞 Classiques</a>
-        <a class="cat-chip" href="#nouveautes">🔥 Promotions</a>
+        <a class="cat-chip active" href="#vetements">Femme</a>
+        <a class="cat-chip" href="#vetements">Homme</a>
+        <a class="cat-chip" href="#vetements"> Enfant</a>
+        <a class="cat-chip" href="#chaussures"> Sneakers</a>
+        <a class="cat-chip" href="#chaussures"> Escarpins</a>
+        <a class="cat-chip" href="#chaussures">Classiques</a>
+        <a class="cat-chip" href="#nouveautes"> Promotions</a>
     </section>
 
     <!-- ===== NOUVEAUTÉS ===== -->
@@ -124,25 +125,25 @@
         </div>
         <div class="products-grid" id="nouveautesGrid">
             <div class="product-card" data-id="1" data-name="Robe Élégance Noire" data-price="18000" data-cat="vetements">
-                <div class="card-img"><div class="card-placeholder">👗</div><div class="card-badge">Nouveau</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge">Nouveau</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(1)">👁 Aperçu</button><button class="wishlist-btn" onclick="toggleWishlist(1)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Femme · Robes</span><h3>Robe Élégance Noire</h3>
                 <div class="card-footer"><span class="price">18 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(1,'Robe Élégance Noire',18000,'👗')">+ Panier</button></div></div>
             </div>
             <div class="product-card" data-id="2" data-name="Sneaker Urban Blanc" data-price="22000" data-cat="chaussures">
-                <div class="card-img"><div class="card-placeholder">👟</div><div class="card-badge bestseller">Bestseller</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge bestseller">Bestseller</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(2)">👁 Aperçu</button><button class="wishlist-btn" onclick="toggleWishlist(2)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Chaussures · Sneakers</span><h3>Sneaker Urban Blanc</h3>
                 <div class="card-footer"><span class="price">22 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(2,'Sneaker Urban Blanc',22000,'👟')">+ Panier</button></div></div>
             </div>
             <div class="product-card" data-id="3" data-name="Chemise Lin Homme" data-price="12000" data-cat="vetements">
-                <div class="card-img"><div class="card-placeholder">👔</div><div class="card-badge promo">-20%</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge promo">-20%</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(3)">👁 Aperçu</button><button class="wishlist-btn" onclick="toggleWishlist(3)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Homme · Chemises</span><h3>Chemise Lin Homme</h3>
                 <div class="card-footer"><span class="price">12 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(3,'Chemise Lin Homme',12000,'👔')">+ Panier</button></div></div>
             </div>
             <div class="product-card" data-id="4" data-name="Escarpin Talon Rouge" data-price="25000" data-cat="chaussures">
-                <div class="card-img"><div class="card-placeholder">👠</div><div class="card-badge">Populaire</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge">Populaire</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(4)">👁 Aperçu</button><button class="wishlist-btn" onclick="toggleWishlist(4)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Femme · Escarpins</span><h3>Escarpin Talon Rouge</h3>
                 <div class="card-footer"><span class="price">25 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(4,'Escarpin Talon Rouge',25000,'👠')">+ Panier</button></div></div>
@@ -167,25 +168,25 @@
         </div>
         <div class="products-grid" id="vetementsGrid">
             <div class="product-card dark-card" data-id="5" data-name="Ensemble Coordonné Femme" data-price="35000">
-                <div class="card-img"><div class="card-placeholder">👗</div><div class="card-badge">Exclusif</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge">Exclusif</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(5)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(5)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Femme · Ensembles</span><h3>Ensemble Coordonné Femme</h3>
                 <div class="card-footer"><span class="price">35 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(5,'Ensemble Coordonné Femme',35000,'👗')">+ Panier</button></div></div>
             </div>
             <div class="product-card dark-card" data-id="6" data-name="Jean Slim Homme" data-price="15000">
-                <div class="card-img"><div class="card-placeholder">👖</div>
+                <div class="card-img"><div class="card-placeholder"></div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(6)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(6)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Homme · Pantalons</span><h3>Jean Slim Homme</h3>
                 <div class="card-footer"><span class="price">15 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(6,'Jean Slim Homme',15000,'👖')">+ Panier</button></div></div>
             </div>
             <div class="product-card dark-card" data-id="7" data-name="Robe Enfant Festive" data-price="8000">
-                <div class="card-img"><div class="card-placeholder">🎀</div><div class="card-badge">Nouveau</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge">Nouveau</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(7)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(7)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Enfant · Robes</span><h3>Robe Enfant Festive</h3>
                 <div class="card-footer"><span class="price">8 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(7,'Robe Enfant Festive',8000,'🎀')">+ Panier</button></div></div>
             </div>
             <div class="product-card dark-card" data-id="8" data-name="Veste Blazer Femme" data-price="28000">
-                <div class="card-img"><div class="card-placeholder">🧥</div><div class="card-badge bestseller">Top vente</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge bestseller">Top vente</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(8)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(8)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Femme · Vestes</span><h3>Veste Blazer Femme</h3>
                 <div class="card-footer"><span class="price">28 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(8,'Veste Blazer Femme',28000,'🧥')">+ Panier</button></div></div>
@@ -204,25 +205,25 @@
         </div>
         <div class="products-grid" id="chaussuresGrid">
             <div class="product-card" data-id="9" data-name="Mocassin Cuir Marron" data-price="30000">
-                <div class="card-img"><div class="card-placeholder">👞</div>
+                <div class="card-img"><div class="card-placeholder"></div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(9)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(9)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Homme · Classiques</span><h3>Mocassin Cuir Marron</h3>
                 <div class="card-footer"><span class="price">30 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(9,'Mocassin Cuir Marron',30000,'👞')">+ Panier</button></div></div>
             </div>
             <div class="product-card" data-id="10" data-name="Sandales Été Femme" data-price="9000">
-                <div class="card-img"><div class="card-placeholder">🩴</div><div class="card-badge promo">-15%</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge promo">-15%</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(10)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(10)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Femme · Sandales</span><h3>Sandales Été Femme</h3>
                 <div class="card-footer"><span class="price">9 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(10,'Sandales Été Femme',9000,'🩴')">+ Panier</button></div></div>
             </div>
             <div class="product-card" data-id="11" data-name="Basket Running Homme" data-price="19000">
-                <div class="card-img"><div class="card-placeholder">👟</div><div class="card-badge">Sport</div>
+                <div class="card-img"><div class="card-placeholder"></div><div class="card-badge">Sport</div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(11)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(11)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Homme · Sport</span><h3>Basket Running Homme</h3>
                 <div class="card-footer"><span class="price">19 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(11,'Basket Running Homme',19000,'👟')">+ Panier</button></div></div>
             </div>
             <div class="product-card" data-id="12" data-name="Ballerine Enfant Rose" data-price="6000">
-                <div class="card-img"><div class="card-placeholder">🩰</div>
+                <div class="card-img"><div class="card-placeholder"></div>
                 <div class="card-actions-overlay"><button class="quick-view-btn" onclick="quickView(12)">👁</button><button class="wishlist-btn" onclick="toggleWishlist(12)">♡</button></div></div>
                 <div class="card-body"><span class="card-cat">Enfant · Ballerines</span><h3>Ballerine Enfant Rose</h3>
                 <div class="card-footer"><span class="price">6 000 FCFA</span><button class="btn-add-cart" onclick="addToCart(12,'Ballerine Enfant Rose',6000,'🩰')">+ Panier</button></div></div>
@@ -252,7 +253,7 @@
                 <!-- Slide 2 -->
                 <div class="gal-slide">
                     <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(40,60,180,0.18) 0%,rgba(20,8,2,0.92) 100%)">
-                        <div class="gal-slide-emoji">👟</div>
+                        <div class="gal-slide-emoji"></div>
                         <div class="gal-slide-info">
                             <span class="gal-slide-cat">Chaussures</span>
                             <h3 class="gal-slide-title">Sneakers Urbains</h3>
@@ -263,7 +264,7 @@
                 <!-- Slide 3 -->
                 <div class="gal-slide">
                     <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(20,100,60,0.18) 0%,rgba(20,8,2,0.92) 100%)">
-                        <div class="gal-slide-emoji">👔</div>
+                        <div class="gal-slide-emoji"></div>
                         <div class="gal-slide-info">
                             <span class="gal-slide-cat">Homme</span>
                             <h3 class="gal-slide-title">Chemises &amp; Style</h3>
@@ -274,7 +275,7 @@
                 <!-- Slide 4 -->
                 <div class="gal-slide">
                     <div class="gal-slide-inner" style="background:linear-gradient(160deg,rgba(180,20,60,0.2) 0%,rgba(20,8,2,0.92) 100%)">
-                        <div class="gal-slide-emoji">👠</div>
+                        <div class="gal-slide-emoji"></div>
                         <div class="gal-slide-info">
                             <span class="gal-slide-cat">Femme</span>
                             <h3 class="gal-slide-title">Escarpins &amp; Glamour</h3>
